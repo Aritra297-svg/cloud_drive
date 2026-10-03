@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#0b100f">
+	<meta name="description" content="A considered home for all your digital work.">
+	<title>NEXUS VAULT — Your files, in focus</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="vault.css">
+	<script src="https://unpkg.com/lucide@latest"></script>
+	<script src="vault.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<aside class="sidebar" id="sidebar" aria-label="Main navigation">
+			<a class="brand" href="#dashboard" aria-label="Nexus Vault home">
+				<span class="brand-mark"><i data-lucide="orbit"></i></span>
+				<span class="brand-name">NEXUS<span>VAULT</span></span>
+			</a>
+			<button class="workspace-switcher" type="button" aria-label="Switch workspace">
+				<span class="workspace-avatar">A</span><span class="workspace-copy"><strong>Personal space</strong><small>Free workspace</small></span><i data-lucide="chevrons-up-down"></i>
+			</button>
+			<nav class="side-nav">
+				<p class="nav-label">Workspace</p>
+				<button class="nav-item active" data-view="dashboard"><i data-lucide="layout-dashboard"></i><span>Overview</span></button>
+				<button class="nav-item" data-view="files"><i data-lucide="folder-closed"></i><span>My files</span><span class="nav-count" id="file-count">0</span></button>
+				<button class="nav-item" data-view="recent"><i data-lucide="clock-3"></i><span>Recent</span></button>
+				<button class="nav-item" data-view="favorites"><i data-lucide="star"></i><span>Starred</span></button>
+				<button class="nav-item" data-view="shared"><i data-lucide="users-round"></i><span>Shared with me</span></button>
+				<p class="nav-label nav-label-spaced">Your library</p>
+				<button class="nav-item" data-view="images"><i data-lucide="image"></i><span>Images</span></button>
+				<button class="nav-item" data-view="videos"><i data-lucide="video"></i><span>Videos</span></button>
+				<button class="nav-item" data-view="documents"><i data-lucide="file-text"></i><span>Documents</span></button>
+				<button class="nav-item" data-view="pdfs"><i data-lucide="file-type-2"></i><span>PDFs</span></button>
+				<button class="nav-item" data-view="spreadsheets"><i data-lucide="table-2"></i><span>Spreadsheets</span></button>
+				<button class="nav-item" data-view="presentations"><i data-lucide="presentation"></i><span>Presentations</span></button>
+				<p class="nav-label nav-label-spaced">Manage</p>
+				<button class="nav-item" data-view="storage"><i data-lucide="chart-no-axes-column-increasing"></i><span>Storage</span></button>
+				<button class="nav-item" data-view="trash"><i data-lucide="trash-2"></i><span>Trash</span></button>
+			</nav>
+			<div class="sidebar-bottom">
+				<div class="side-storage">
+					<div class="storage-label"><span>Storage used</span><span id="sidebar-storage">0%</span></div>
+					<div class="storage-track"><span id="sidebar-storage-fill"></span></div>
+					<small id="sidebar-storage-copy">0 GB of 100 GB</small>
+					<button class="text-link" data-view="storage">Manage storage <i data-lucide="arrow-up-right"></i></button>
+				</div>
+				<button class="nav-item" data-view="settings"><i data-lucide="settings-2"></i><span>Settings</span></button>
+				<button class="nav-item" data-action="help"><i data-lucide="circle-help"></i><span>Help & support</span></button>
+				<button class="profile-row" data-action="profile"><span class="profile-avatar">AK</span><span class="profile-copy"><strong>Aritra K.</strong><small>Personal account</small></span><i data-lucide="ellipsis"></i></button>
+			</div>
+		</aside>
+
+		<main class="main-area">
+			<header class="topbar">
+				<button class="icon-button mobile-menu" id="menu-toggle" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+				<div class="breadcrumb"><span>Workspace</span><i data-lucide="chevron-right"></i><strong id="breadcrumb-title">Overview</strong></div>
+				<div class="topbar-actions">
+					<label class="search-box" for="global-search"><i data-lucide="search"></i><input id="global-search" type="search" placeholder="Search your files..." autocomplete="off"><kbd>⌘ K</kbd></label>
+					<button class="icon-button notification-button" id="notifications-button" aria-label="Notifications"><i data-lucide="bell"></i><span class="notification-dot"></span></button>
+					<button class="icon-button theme-toggle" id="theme-toggle" aria-label="Switch to light theme"><i data-lucide="sun"></i></button>
+					<button class="top-avatar" data-action="profile" aria-label="Account menu">AK</button>
+				</div>
+			</header>
+
+			<div class="mobile-nav" aria-label="Quick navigation">
+				<button class="mobile-nav-item active" data-view="dashboard"><i data-lucide="layout-dashboard"></i><span>Home</span></button>
+				<button class="mobile-nav-item" data-view="files"><i data-lucide="folder-closed"></i><span>Files</span></button>
+				<button class="mobile-nav-item" data-action="upload"><span class="mobile-upload-icon"><i data-lucide="plus"></i></span><span>Upload</span></button>
+				<button class="mobile-nav-item" data-view="favorites"><i data-lucide="star"></i><span>Starred</span></button>
+				<button class="mobile-nav-item" data-view="settings"><i data-lucide="settings-2"></i><span>Settings</span></button>
+			</div>
+
+			<div class="page-content" id="page-content">
+				<section class="welcome-row" id="welcome-section">
+					<div>
+						<div class="eyebrow"><span class="status-pulse"></span> YOUR SPACE, IN SYNC</div>
+						<h1>Good evening, Aritra<span class="greeting-dot">.</span></h1>
+						<p class="welcome-copy">A little more room to think. Everything you need, right where you left it.</p>
+					</div>
+					<div class="welcome-actions"><span class="sync-status"><i data-lucide="cloud-check"></i> All changes saved</span><button class="button button-primary" data-action="upload"><i data-lucide="arrow-up-from-line"></i> Upload files</button></div>
+				</section>
+
+				<section class="overview-grid" id="overview-cards" aria-label="Storage overview">
+					<article class="storage-card">
+						<div class="card-topline"><span class="card-kicker">YOUR STORAGE</span><button class="subtle-icon" data-view="storage" aria-label="Storage details"><i data-lucide="arrow-up-right"></i></button></div>
+						<div class="storage-main"><div><div class="storage-amount"><strong id="storage-used">68.4</strong><span>GB <em>of 100 GB</em></span></div><p class="storage-caption">You've got room for more good things.</p></div><div class="storage-ring" id="storage-ring" role="img" aria-label="68 percent storage used"><div class="ring-inner"><strong id="storage-percent">68%</strong><span>used</span></div></div></div>
+						<div class="category-bars" id="category-bars"></div>
+					</article>
+					<article class="upload-card" id="upload-zone" tabindex="0" role="button" aria-label="Upload files. Drop files here or press Enter to browse">
+						<input type="file" id="file-input" multiple hidden accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.csv,.ppt,.pptx,.zip,.rar,.txt">
+						<div class="upload-orbit"><i data-lucide="cloud-upload"></i><span class="orbit-spark spark-one"></span><span class="orbit-spark spark-two"></span></div>
+						<div class="upload-copy"><strong>Bring it all together.</strong><span>Drop files here, or <button class="inline-link" id="browse-files" type="button">browse your device</button></span><small>Up to 100 MB per file <b>·</b> Images, video & documents</small></div>
+						<span class="secure-note"><i data-lucide="shield-check"></i> Secure transfer</span>
+						<div class="drop-overlay"><i data-lucide="arrow-down-to-line"></i><strong>LET GO TO ADD FILES</strong></div>
+					</article>
+				</section>
+
+				<section class="quick-stats" aria-label="File totals">
+					<div class="quick-stat"><span class="stat-icon stat-indigo"><i data-lucide="files"></i></span><div><strong id="total-files">24</strong><span>Total files</span></div><small>+3 this week</small></div>
+					<div class="quick-stat"><span class="stat-icon stat-mint"><i data-lucide="image"></i></span><div><strong id="image-total">8</strong><span>Visual assets</span></div><small>12.4 GB</small></div>
+					<div class="quick-stat"><span class="stat-icon stat-amber"><i data-lucide="file-check-2"></i></span><div><strong id="doc-total">11</strong><span>Documents</span></div><small>Updated today</small></div>
+					<div class="quick-stat"><span class="stat-icon stat-rose"><i data-lucide="share-2"></i></span><div><strong id="shared-total">4</strong><span>Shared with you</span></div><small>2 collaborators</small></div>
+				</section>
+
+				<section class="files-section" id="files-section">
+					<div class="section-heading">
+						<div><div class="eyebrow section-eyebrow" id="files-eyebrow"><span class="eyebrow-label">YOUR LIBRARY</span><span class="heading-count" id="visible-count">12 items</span></div><h2 id="files-heading">Recently added</h2></div>
+						<div class="file-controls"><div class="filter-wrap"><i data-lucide="list-filter"></i><select id="sort-select" aria-label="Sort files"><option value="recent">Last modified</option><option value="name">Name A–Z</option><option value="size">Largest first</option></select></div><div class="view-toggle" role="group" aria-label="View mode"><button class="view-button active" data-mode="grid" aria-label="Grid view"><i data-lucide="layout-grid"></i></button><button class="view-button" data-mode="list" aria-label="List view"><i data-lucide="list"></i></button></div></div>
+					</div>
+					<div class="filter-chips" id="filter-chips" aria-label="Filter files"><button class="filter-chip active" data-filter="all">Everything <span>12</span></button><button class="filter-chip" data-filter="image">Images</button><button class="filter-chip" data-filter="video">Video</button><button class="filter-chip" data-filter="document">Documents</button><button class="filter-chip" data-filter="pdf">PDFs</button><button class="filter-chip" data-filter="spreadsheet">Sheets</button><button class="filter-chip" data-filter="presentation">Slides</button></div>
+					<div class="file-grid" id="file-grid" aria-live="polite"></div>
+					<div class="empty-state" id="empty-state" hidden><span class="empty-illustration"><i data-lucide="folder-open"></i><i data-lucide="sparkles"></i></span><h3 id="empty-title">Nothing here just yet</h3><p id="empty-copy">Your next great thing can start with a file.</p><button class="button button-primary" data-action="upload"><i data-lucide="plus"></i> Add a file</button></div>
+				</section>
+
+				<section class="recent-strip" id="recent-strip"><div class="recent-strip-heading"><div><div class="eyebrow section-eyebrow">PICK UP WHERE YOU LEFT OFF</div><h2>Recently opened</h2></div><button class="text-link" data-view="recent">See all <i data-lucide="arrow-right"></i></button></div><div class="recent-list" id="recent-list"></div></section>
+				<footer class="page-footer"><span>© 2026 NEXUS VAULT</span><span><i data-lucide="lock-keyhole"></i> Your files stay yours</span><button class="footer-link" data-action="help">Privacy & security</button></footer>
+			</div>
+		</main>
+	</div>
+
+	<aside class="details-panel" id="details-panel" aria-label="File details" aria-hidden="true"><div class="panel-header"><div><span class="eyebrow">FILE DETAILS</span><h2>Details</h2></div><button class="icon-button" data-action="close-details" aria-label="Close details"><i data-lucide="x"></i></button></div><div id="details-content"></div></aside>
+	<div class="drawer-scrim" id="drawer-scrim"></div>
+	<div class="menu-scrim" id="menu-scrim"></div>
+	<div class="context-menu" id="context-menu" role="menu"></div>
+	<div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="false"></div>
+
+	<dialog class="app-dialog" id="app-dialog" aria-labelledby="dialog-title"><form method="dialog" id="dialog-form"><div class="dialog-top"><span class="dialog-mark"><i data-lucide="sparkles"></i></span><button class="icon-button" value="cancel" aria-label="Close dialog"><i data-lucide="x"></i></button></div><div id="dialog-body"></div></form></dialog>
+	<dialog class="preview-dialog" id="preview-dialog" aria-label="File preview"><div id="preview-content"></div></dialog>
+
+	<template id="file-card-template">
+		<article class="file-card" tabindex="0"><div class="file-preview"><div class="file-preview-content"></div><span class="preview-type"></span><button class="favorite-button" aria-label="Add to favorites"><i data-lucide="star"></i></button><button class="file-more" aria-label="More file options"><i data-lucide="ellipsis"></i></button><button class="open-file" aria-label="Preview file"><i data-lucide="arrow-up-right"></i></button></div><div class="file-info"><div class="file-title-row"><div class="file-name-wrap"><span class="type-mark"></span><strong class="file-name"></strong></div><span class="file-shared" hidden><i data-lucide="users-round"></i></span></div><p class="file-meta"></p><div class="file-card-bottom"><span class="file-modified"></span><span class="file-owner"></span></div></div></article>
+	</template>
+</body>
+</html>
